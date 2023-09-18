@@ -1,17 +1,17 @@
 import '../assets/styles/login.css'
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input } from 'antd';
+import { LockOutlined, UserOutlined, CheckOutlined, CloseOutlined } from '@ant-design/icons';
+import { Button, Switch, Form, Input } from 'antd';
 
 const Login = () => {
   const onFinish = (values) => {
-
+    console.log(values);
   };
   return (
     <Form
       name="loginForm"
       className="login-form"
       initialValues={{
-        remember: true,
+        remember: false,
       }}
       onFinish={onFinish}
     >
@@ -35,15 +35,21 @@ const Login = () => {
           },
         ]}
       >
-        <Input
+        <Input.Password
           prefix={<LockOutlined className="site-form-item-icon" />}
-          type="password"
           placeholder="رمز عبور"
         />
       </Form.Item>
-
-      <Form.Item name="remember" valuePropName="checked" >
-        <Checkbox>مرا بخاطر بسپار</Checkbox>
+      <Form.Item>
+        <Form.Item name="remember" valuePropName="checked" noStyle>
+          <Switch
+            checkedChildren={<CheckOutlined />}
+            unCheckedChildren={<CloseOutlined />}
+          />
+        </Form.Item> به خاطر بسپار
+        <a className="login-form-forgot" href="register">
+        فراموشی رمز عبور
+        </a>
       </Form.Item>
 
       <Form.Item>
@@ -52,9 +58,7 @@ const Login = () => {
         </Button>
         و یا <a href="">ثبت نام کنید.</a>
       </Form.Item>
-        <a className="login-form-forgot" href="register">
-        فراموشی رمز عبور
-        </a>
+
     </Form>
   )
 }
